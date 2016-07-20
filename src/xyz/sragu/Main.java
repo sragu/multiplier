@@ -1,7 +1,6 @@
 package xyz.sragu;
 
 import java.util.Iterator;
-import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -15,8 +14,7 @@ public class Main {
 class Multiplier {
     public static long multiply(long one, long two) {
         return new PeasantTable(one, two).createStream().peek(System.out::println)
-                .filter(PeasantTable::notExcluded)
-                .mapToLong(PeasantTable::value)
+                .mapToLong(PeasantTable::resultValue)
                 .sum();
     }
 }
@@ -60,11 +58,7 @@ class PeasantTable implements Iterable<PeasantTable> {
         return String.format("%s, %s (excluded=%s)", first, second, excluded);
     }
 
-    public boolean notExcluded() {
-        return !excluded;
-    }
-
-    public long value() {
-        return first;
+    public long resultValue() {
+        return excluded ? 0 : first;
     }
 }
