@@ -27,6 +27,9 @@ class Multiplier {
     }
 }
 
+/**
+ * Using custom iterator (old school for generator) to generate peasant tables
+ */
 class PeasantTable implements Iterable<PeasantTable> {
     private final long first, second;
     private final boolean excluded;
