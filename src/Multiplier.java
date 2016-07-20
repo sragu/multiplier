@@ -1,36 +1,16 @@
-package xyz.sragu;
-
 import java.util.Iterator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class Main {
-
-    public static void main(String[] args) {
-        System.out.printf("result: %s \n", Multiplier.multiply(20, 30));
-    }
-}
-
-class Multiplier {
-    public static long multiply(long one, long two) {
-
-        return PeasantTables.stream(PeasantTables.generate(one, two))
-                .peek(System.out::println)
-                .mapToLong(PeasantTables.PeasantTable::resultValue)
-                .sum();
-    }
-}
-
-class PeasantTables {
+interface PeasantTables {
     static Iterable<PeasantTable> generate(final long first, final long second) {
         return () -> new PeasantTableIterator(new PeasantTable(first, second));
     }
 
-    static Stream<PeasantTable> stream(Iterable<PeasantTable> iterable) {
-        return StreamSupport.stream(iterable.spliterator(), false);
-    }
-
-    static class PeasantTableIterator implements Iterator<PeasantTable> {
+    /**
+     * using iterators (old school generators) to build the peasant table.
+     */
+    class PeasantTableIterator implements Iterator<PeasantTable> {
         private PeasantTable next;
 
         PeasantTableIterator(PeasantTable seed) {
@@ -50,7 +30,7 @@ class PeasantTables {
         }
     }
 
-    static class PeasantTable {
+    class PeasantTable {
         private final long first, second;
         private final boolean excluded;
 
@@ -60,13 +40,27 @@ class PeasantTables {
             this.excluded = (second % 2 == 0);
         }
 
+        public long resultValue() {
+            return excluded ? 0 : first;
+        }
+
         @Override
         public String toString() {
             return String.format("%s, %s (excluded=%s)", first, second, excluded);
         }
+    }
+}
 
-        public long resultValue() {
-            return excluded ? 0 : first;
-        }
+public class Multiplier {
+    static long multiply(long one, long two) {
+
+        return stream(PeasantTables.generate(one, two))
+                .peek(System.out::println)
+                .mapToLong(PeasantTables.PeasantTable::resultValue)
+                .sum();
+    }
+
+    private static Stream<PeasantTables.PeasantTable> stream(Iterable<PeasantTables.PeasantTable> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false);
     }
 }
