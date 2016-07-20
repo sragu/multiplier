@@ -13,9 +13,17 @@ public class Main {
 
 class Multiplier {
     public static long multiply(long one, long two) {
-        return new PeasantTable(one, two).createStream().peek(System.out::println)
+        final PeasantTable peasantTable = new PeasantTable(one, two);
+
+        return createStreamFrom(peasantTable)
+                .peek(System.out::println)
                 .mapToLong(PeasantTable::resultValue)
                 .sum();
+
+    }
+
+    private static Stream<PeasantTable> createStreamFrom(Iterable<PeasantTable> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false);
     }
 }
 
@@ -47,10 +55,6 @@ class PeasantTable implements Iterable<PeasantTable> {
                 return current;
             }
         };
-    }
-
-    Stream<PeasantTable> createStream() {
-        return StreamSupport.stream(this.spliterator(), false);
     }
 
     @Override
