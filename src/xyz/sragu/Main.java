@@ -51,7 +51,7 @@ class PeasantTable implements Iterable<PeasantTable> {
             @Override
             public PeasantTable next() {
                 PeasantTable current = next;
-                next = new PeasantTable(next.first * 2, next.second / 2);
+                next = new PeasantTable(current.first * 2, current.second / 2);
                 return current;
             }
         };
