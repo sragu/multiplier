@@ -1,28 +1,29 @@
 package xyz.sragu;
 
 import java.util.Iterator;
-import java.util.function.Consumer;
+import java.util.function.BinaryOperator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        final Stream<PeasantTable> table = StreamSupport.stream(new PeasantTable(20, 20).spliterator(), false);
-        final long result = table.peek(log()).filter(t -> !t.excluded).mapToLong(t -> t.first).sum();
-
-        System.out.printf("result: %s \n", result);
+        System.out.printf("result: %s \n", Multiplier.multiply(20, 3));
     }
+}
 
-    private static Consumer<PeasantTable> log() {
-        return t -> System.out.printf("%s, %s \n", t.first, t.second);
+class Multiplier {
+    public static long multiply(long one, long two) {
+        return new PeasantTable(one, two).createStream().peek(System.out::println)
+                .filter(PeasantTable::notExcluded)
+                .mapToLong(PeasantTable::value)
+                .sum();
     }
 }
 
 class PeasantTable implements Iterable<PeasantTable> {
-    final long first, second;
-    final boolean excluded;
+    private final long first, second;
+    private final boolean excluded;
 
     public PeasantTable(long first, long second) {
         this.first = first;
@@ -48,5 +49,22 @@ class PeasantTable implements Iterable<PeasantTable> {
                 return current;
             }
         };
+    }
+
+    Stream<PeasantTable> createStream() {
+        return StreamSupport.stream(this.spliterator(), false);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s (excluded=%s)", first, second, excluded);
+    }
+
+    public boolean notExcluded() {
+        return !excluded;
+    }
+
+    public long value() {
+        return first;
     }
 }
