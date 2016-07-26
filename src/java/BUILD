@@ -1,11 +1,11 @@
 java_library(
   name = "multiply",
-  srcs = glob(["src/Multiplier.java"])
+  srcs = glob(["Multiplier.java"])
 )
 
 java_test(
   name = "multiply-test",
-  srcs = glob(["src/MultiplierTest.java"]),
+  srcs = glob(["MultiplierTest.java"]),
   test_class = "MultiplierTest",
   size = "small",
   deps = [
@@ -17,7 +17,7 @@ java_test(
 java_binary(
   name = "multiply-main",
   main_class = "Main",
-  srcs = glob(["src/Main.java"]),
+  srcs = glob(["Main.java"]),
   deps = [
     ":multiply",
   ],
