@@ -1,7 +1,6 @@
-export function multiplier() {
-
+export function multiplier () {
   return {
-    multiply: function(a, b) {
+    multiply: function (a, b) {
       return 12
     }
   }

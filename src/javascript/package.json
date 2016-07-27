@@ -9,11 +9,12 @@
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
     "esformatter": "^0.9.6",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "standard": "^7.1.2"
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register *_spec.js",
-    "format" : "esformatter -i *.js"
+    "format": "esformatter -i *.js && standard --fix *.js"
   },
   "author": "",
   "license": "ISC"
