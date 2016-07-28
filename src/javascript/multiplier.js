@@ -20,10 +20,12 @@ export function multiplier () {
     multiply: function (a, b) {
       let entries = Array.from(peasantTables(a, b))
 
-      const evenRowValues = e => e.second % 2 === 0
-      const resultValue = e => e.first
+      const isEven = e => e.second % 2 === 0
+      const getFirst = e => e.first
+      const rejectEntriesWithEvenValues = _.curryRight(_.reject)(isEven)
+      const sumFirstColumn =  _.flow([_.curryRight(_.map)(getFirst), _.sum])
 
-      return _(entries).reject(evenRowValues).map(resultValue).sum()
+      return _.flow([rejectEntriesWithEvenValues, sumFirstColumn])(entries)
     }
   }
 }
