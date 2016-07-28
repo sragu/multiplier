@@ -18,8 +18,8 @@
     "standard": "^7.1.2"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register *_spec.js",
-    "format": "esformatter -i *.js && standard --fix *.js"
+    "test": "mocha --compilers js:babel-register src/javascript/*_spec.js",
+    "format": "esformatter -i src/javascript/*.js && standard --fix src/javascript/*.js"
   },
   "author": "",
   "license": "ISC"
