@@ -1,26 +1,29 @@
+import _ from 'lodash'
 export function multiplier () {
-
-  /** Generator for peasantTables */
-  function * peasantTables (a, b) {
-    yield [a, b]
-
-    while (b > 0) {
-      yield [a = a * 2, b = Math.floor(b / 2)]
+  function entry (a, b) {
+    return {
+      'first': a,
+      'second': b
     }
   }
 
-  function valueOfEntry (first, second) {
-    return (second % 2 === 0) ? 0 : first
+  /** Generator for peasantTables */
+  function * peasantTables (a, b) {
+    yield entry(a, b)
+
+    while (b > 0) {
+      yield entry(a = a * 2, b = Math.floor(b / 2))
+    }
   }
 
   return {
     multiply: function (a, b) {
-      var result = 0
-      for (let [first, second] of peasantTables(a, b)) {
-        // console.log([first, second])
-        result += valueOfEntry(first, second)
-      }
-      return result
+      let entries = Array.from(peasantTables(a, b))
+
+      let skipEvenValues = e => e.second % 2 !== 0
+      let resultValue = e => e.first
+
+      return _(entries).filter(skipEvenValues).map(resultValue).sum()
     }
   }
 }
