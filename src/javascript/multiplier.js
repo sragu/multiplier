@@ -20,10 +20,10 @@ export function multiplier () {
     multiply: function (a, b) {
       let entries = Array.from(peasantTables(a, b))
 
-      let skipEvenValues = e => e.second % 2 !== 0
-      let resultValue = e => e.first
+      const evenRowValues = e => e.second % 2 === 0
+      const resultValue = e => e.first
 
-      return _(entries).filter(skipEvenValues).map(resultValue).sum()
+      return _(entries).reject(evenRowValues).map(resultValue).sum()
     }
   }
 }
