@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 /* global describe, it */
 import { multiplier } from './multiplier'
 import { expect } from 'chai'
