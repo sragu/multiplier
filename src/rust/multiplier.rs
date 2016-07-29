@@ -1,4 +1,4 @@
-pub struct Entry {
+struct Entry {
     first: i64,
     second: i64,
 }
@@ -10,10 +10,7 @@ struct PeasantTables {
 impl Iterator for PeasantTables {
     type Item = Entry;
     fn next(&mut self) -> Option<Entry> {
-        let current = Entry {
-            first: self.next.first,
-            second: self.next.second,
-        };
+        let current = Entry { ..self.next };
 
         self.next = Entry {
             first: current.first * 2,
