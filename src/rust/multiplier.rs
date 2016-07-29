@@ -20,10 +20,9 @@ impl Iterator for PeasantTables {
             second: current.second / 2,
         };
 
-        if current.second == 0 {
-            None
-        } else {
-            Some(current)
+        match current.second {
+            0 => None,
+            _ => Some(current),
         }
     }
 }
