@@ -1,24 +1,24 @@
 java_library(
-  name = "multiply",
+  name = "multiplier",
   srcs = glob(["Multiplier.java"])
 )
 
 java_test(
-  name = "multiply-test",
+  name = "multiplier_test",
   srcs = glob(["MultiplierTest.java"]),
   test_class = "MultiplierTest",
   size = "small",
   deps = [
-    ":multiply",
+    ":multiplier",
     "//external:junit-jar",
   ],
 )
 
 java_binary(
-  name = "multiply-main",
+  name = "multiplier_main",
   main_class = "Main",
   srcs = glob(["Main.java"]),
   deps = [
-    ":multiply",
+    ":multiplier",
   ],
 )
