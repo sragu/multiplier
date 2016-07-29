@@ -1,5 +1,42 @@
+pub struct Entry {
+    first: i64,
+    second: i64,
+}
+
+struct PeasantTables {
+    next: Entry,
+}
+
+impl Iterator for PeasantTables {
+    type Item = Entry;
+    fn next(&mut self) -> Option<Entry> {
+        let current = Entry {
+            first: self.next.first,
+            second: self.next.second,
+        };
+
+        self.next = Entry {
+            first: current.first * 2,
+            second: current.second / 2,
+        };
+
+        if current.second == 0 {
+            None
+        } else {
+            Some(current)
+        }
+    }
+}
+
 pub fn multiply(a: i64, b: i64) -> i64 {
-    a * b
+    let tables = PeasantTables {
+        next: Entry {
+            first: a,
+            second: b,
+        },
+    };
+
+    tables.filter(|e| e.second % 2 != 0).map(|e| e.first).fold(0, std::ops::Add::add)
 }
 
 #[cfg(test)]
