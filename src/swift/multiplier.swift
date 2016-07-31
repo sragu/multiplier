@@ -4,18 +4,15 @@ struct Entry {
 }
 
 class PeasantTables: Sequence, IteratorProtocol {
-    var nextEntry:Entry
+    var current:Entry
     
     init(seed:Entry) {
-        self.nextEntry = seed
+        current = seed
     }
     
     func next() -> Entry? {
-        let current = self.nextEntry
-        
         guard current.second > 0 else { return nil }
-        self.nextEntry = Entry(first: current.first * 2, second: current.second / 2)
-        
+        defer { current = Entry(first: current.first * 2, second: current.second / 2) }
         return current
     }
 }
