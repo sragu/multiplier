@@ -9,3 +9,5 @@ bazel run src/rust/multiplier_main
 
 #move this to bazel if possible
 npm install && npm test
+
+#to execute swift go to [src/swift] directory and see 'shell' & 'run' scripts
