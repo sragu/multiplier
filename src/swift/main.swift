@@ -1,1 +1,1 @@
-print("3x4 is \(multiply(a: 3, b: 4))")
+print("30x41 is \(multiply(a: 30, b: 41))")
