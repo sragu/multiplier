@@ -7,15 +7,15 @@ class multiplierTests: XCTestCase {
         XCTAssertEqual(multiplier.multiply(a:30, b:4), 120)
         XCTAssertEqual(multiplier.multiply(a:3, b:40), 120)
     }
-    
+
     func testMultiplicationEdgeCases() {
         XCTAssertEqual(multiplier.multiply(a:0, b:0), 0)
         XCTAssertEqual(multiplier.multiply(a:0, b:5), 0)
         XCTAssertEqual(multiplier.multiply(a:43, b:0), 0)
         XCTAssertEqual(multiplier.multiply(a:1, b:1), 1)
     }
-    
-    static var allTests : [(String, (multiplierTests) -> () throws -> Void)] {
+
+    static var allTests: [(String, (multiplierTests) -> () throws -> Void)] {
         return [
             ("testMultiplication", testMultiplication),
             ("testMultiplicationEdgeCases", testMultiplicationEdgeCases)
