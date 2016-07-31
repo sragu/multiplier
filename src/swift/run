@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it multiplier_swift /bin/bash -c "cd /opt/source; swift build --clean build && swift build && swift test"

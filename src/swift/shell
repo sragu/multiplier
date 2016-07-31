@@ -1,0 +1,4 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+# launch the swift linux here and then you can run tests from ./run script
+docker run --name multiplier_swift -v `pwd`:/opt/source --rm  -i -t swiftdocker/swift:latest
