@@ -1,0 +1,9 @@
+#!/bin/sh
+#needs ocaml, ocamlbuild, opam
+#opam install OUnit
+
+cd "$(dirname "$0")"
+ocamlbuild -use-ocamlfind multiplier.native
+ocamlbuild -use-ocamlfind -pkgs OUnit  multiplierTests.native
+
+./multiplierTests.native
