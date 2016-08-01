@@ -11,7 +11,7 @@ Reference - http://mathforum.org/dr.math/faq/faq.peasant.html
 
  * straight forward implementation of the algorithm.
  * source and tests in same directory where possible
- * leaned towards [Generator](https://en.wikipedia.org/wiki/Generator_%28computer_programming%29) where available, or Iterator otherwise
+ * Peasant tables is built using a [Generator](https://en.wikipedia.org/wiki/Generator_%28computer_programming%29) where available, or an Iterator otherwise.
  
 ## Build
 
