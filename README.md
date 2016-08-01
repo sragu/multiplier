@@ -5,7 +5,7 @@ Reference - http://mathforum.org/dr.math/faq/faq.peasant.html
 
 ## Languages
 
- [Java](src/java), [Rust](src/rust), [JavaScript](src/javascript), [Swift3](src/swift)
+ [Java](src/java), [JavaScript ES6(Babel)](src/javascript), [Rust](src/rust), [Swift3](src/swift)
  
 ## Approach
 
@@ -27,4 +27,12 @@ Reference - http://mathforum.org/dr.math/faq/faq.peasant.html
  
 ## Miscellaneous
  
-  * Swift - under src/swift, you will find start/run scripts which will help to execute Swift code/tests
+ * Swift - under src/swift, you will find start/run scripts which will help to execute Swift code/tests
+
+## Learnings
+ * Bazel is quite fast, incrementally builds only new changes - but quite hard to grasp the project due to scattered build files.
+ * Java8 streams/lambdas makes the language a decent choice for once (not considering the awesomeness of JVM).
+ * JavaScript generators and other ES6 sytnax improvements are pretty neat.
+ * Rust lang concept of borrow/lifetimes are quite neat and warns you of potential mistakes.
+ * Swift3 error messages are super friendly, even highlighted where classes are renamed between versions.
+ * Rust/Swift/Java don't have concept of generators, only iterators
