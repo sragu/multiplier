@@ -23,8 +23,8 @@ Reference - http://mathforum.org/dr.math/faq/faq.peasant.html
 
  * Get Bazel installed - `brew install bazel`
  * Get NodeJs installed - `brew install node`
- * Run './go'
+ * Run `./go`
  
- ## Miscellaneous
+## Miscellaneous
  
   * Swift - under src/swift, you will find start/run scripts which will help to execute Swift code/tests
